@@ -8,8 +8,11 @@ import { Button } from '../../components/ui/Button'
 import NoticeBoard from '../../components/shared/NoticeBoard'
 
 const HomePage = () => {
-  const { data: courses = [], isLoading: coursesLoading } = useCourses()
-  const { data: books = [], isLoading: booksLoading } = useBooks()
+  const { data: coursesData, isLoading: coursesLoading } = useCourses()
+  const { data: booksData, isLoading: booksLoading } = useBooks()
+
+  const courses = Array.isArray(coursesData) ? coursesData : []
+  const books = Array.isArray(booksData) ? booksData : []
 
   const featuredCourses = courses.slice(0, 3)
   const featuredBooks = books.slice(0, 4)
