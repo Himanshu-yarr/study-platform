@@ -51,7 +51,9 @@ app.use('/api/playlists', playlistRoutes)
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/dist')))
   
-  app.get('/:path*', (req, res) => {
+  // Catch-all middleware for client-side routing
+  app.use((req, res, next) => {
+    if (req.path.startsWith('/api')) return next()
     res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'))
   })
 } else {
