@@ -4,18 +4,16 @@
   "description": "Judiciary and LLB preparation platform",
   "main": "server/index.js",
   "scripts": {
-    "install-all": "npm install --prefix server && npm install --prefix client",
-    "build-client": "npm run build --prefix client",
+    "build": "npm install --prefix server --production=false && npm install --prefix client --production=false && npm run build --prefix client",
     "start": "node server/index.js",
     "server": "npm start --prefix server",
     "client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "npm run install-all && npm run build-client"
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
     "concurrently": "^8.2.2"
   }
 }
