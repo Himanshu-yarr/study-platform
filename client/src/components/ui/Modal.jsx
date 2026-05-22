@@ -57,7 +57,7 @@ export const Modal = ({
               </button>
             </div>
             
-            <div className="p-6 overflow-y-auto custom-scrollbar">
+            <div className="p-6 overflow-y-auto custom-scrollbar pb-12">
               {children}
             </div>
           </motion.div>
