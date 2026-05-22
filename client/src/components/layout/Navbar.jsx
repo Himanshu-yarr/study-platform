@@ -1,13 +1,11 @@
-import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, BookOpen, GraduationCap, LayoutDashboard, LogOut } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { GraduationCap, LayoutDashboard, LogOut } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { useAuth } from '../../context/AuthContext'
 import { ThemeToggle } from '../ui/ThemeToggle'
 import { cn } from '../../lib/cn'
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { user, logout } = useAuth()
   const location = useLocation()
 
@@ -21,18 +19,18 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path
 
   return (
-    <nav className="sticky top-0 z-50 h-16 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
-      <div className="container-main h-full flex items-center justify-between">
+    <nav className="sticky top-0 z-50 h-16 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 flex items-center">
+      <div className="container-main w-full h-full flex flex-row flex-nowrap items-center justify-between px-4 sm:px-6">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white flex-shrink-0">
-            <GraduationCap size={20} />
+        <Link to="/" className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+          <div className="w-8 h-8 sm:w-9 sm:h-9 bg-brand-600 rounded-xl flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-brand-500/20">
+            <GraduationCap className="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
           </div>
-          <span className="font-bold text-sm sm:text-base md:text-lg tracking-tight dark:text-white whitespace-nowrap">STUDY GO with ZEENAT</span>
+          <span className="font-bold text-sm sm:text-base md:text-lg tracking-tight dark:text-white whitespace-nowrap">STUDY GO</span>
         </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop Nav (Hidden on Mobile) */}
+        <div className="hidden md:flex items-center gap-6 flex-shrink-0">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -53,102 +51,47 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Right side actions */}
-        <div className="flex items-center gap-3">
+        {/* Actions */}
+        <div className="flex flex-row flex-nowrap items-center gap-1 sm:gap-3 flex-shrink-0">
           <ThemeToggle />
           
-          <div className="hidden md:flex items-center gap-3 ml-2">
-            {user ? (
-              <div className="flex items-center gap-3">
-                {user.role === 'admin' && (
-                  <Link to="/admin" className="btn-sm btn-ghost gap-2">
-                    <LayoutDashboard size={16} />
-                    Admin
-                  </Link>
-                )}
-                <Link to="/dashboard" className="h-8 w-8 rounded-full overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-100">
-                  {user.avatar ? (
-                    <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-brand-50 text-brand-700 font-bold text-xs uppercase">
-                      {user.name.charAt(0)}
-                    </div>
-                  )}
-                </Link>
-                <button onClick={logout} className="p-2 text-gray-500 hover:text-red-500 transition-colors">
-                  <LogOut size={18} />
-                </button>
-              </div>
-            ) : (
-              <Link to="/login" className="btn-md btn-primary">
-                Sign In
-              </Link>
-            )}
-          </div>
-
-          {/* Mobile menu button */}
-          <button 
-            className="md:hidden p-2 text-gray-600 dark:text-gray-400"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu Drawer */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 overflow-hidden"
-          >
-            <div className="container-main py-4 flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={cn(
-                    'h-12 flex items-center px-4 rounded-lg text-base font-medium',
-                    isActive(link.path) ? 'bg-brand-50 text-brand-600 dark:bg-brand-900/20' : 'text-gray-600 dark:text-gray-400'
-                  )}
+          {user ? (
+            <div className="flex flex-row flex-nowrap items-center gap-1 sm:gap-3 flex-shrink-0">
+              {user.role === 'admin' && (
+                <Link 
+                  to="/admin" 
+                  className="p-1.5 sm:p-2 text-gray-500 hover:text-brand-600 transition-colors"
+                  title="Admin Panel"
                 >
-                  {link.name}
-                </Link>
-              ))}
-              <hr className="my-2 border-gray-100 dark:border-gray-800" />
-              {user ? (
-                <>
-                  <Link
-                    to="/dashboard"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="h-12 flex items-center px-4 rounded-lg text-base font-medium text-gray-600 dark:text-gray-400"
-                  >
-                    Dashboard
-                  </Link>
-                  <button
-                    onClick={() => { logout(); setIsMenuOpen(false); }}
-                    className="h-12 flex items-center px-4 rounded-lg text-base font-medium text-red-600"
-                  >
-                    Sign Out
-                  </button>
-                </>
-              ) : (
-                <Link
-                  to="/login"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="h-12 flex items-center px-4 rounded-lg text-base font-medium bg-brand-600 text-white justify-center"
-                >
-                  Sign In
+                  <LayoutDashboard className="w-[18px] h-[18px] sm:w-5 sm:h-5" />
                 </Link>
               )}
+              
+              <Link to="/dashboard" className="h-8 w-8 sm:h-9 sm:w-9 rounded-full overflow-hidden border-2 border-transparent hover:border-brand-500 transition-all p-0.5 shadow-sm flex-shrink-0">
+                {user.avatar ? (
+                  <img src={user.avatar} alt={user.name} className="w-full h-full object-cover rounded-full" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-brand-100 text-brand-700 font-bold text-xs uppercase rounded-full">
+                    {user.name.charAt(0)}
+                  </div>
+                )}
+              </Link>
+
+              <button 
+                onClick={logout}
+                className="p-1.5 sm:p-2 text-gray-400 hover:text-red-500 transition-colors flex-shrink-0"
+                title="Sign Out"
+              >
+                <LogOut className="w-[18px] h-[18px] sm:w-5 sm:h-5" />
+              </button>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          ) : (
+            <Link to="/login" className="btn-sm btn-primary rounded-full px-3 sm:px-4 text-[10px] sm:text-xs font-bold shadow-md shadow-brand-500/10 flex-shrink-0">
+              Sign In
+            </Link>
+          )}
+        </div>
+      </div>
     </nav>
   )
 }

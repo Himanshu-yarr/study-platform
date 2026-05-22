@@ -114,12 +114,12 @@ const AdminCoursesPage = () => {
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="heading-2 dark:text-white">Manage Courses</h1>
           <p className="body-sm">Create, edit and publish your video courses.</p>
         </div>
-        <Button onClick={() => { setEditingCourse(null); setIsFormOpen(true); }} className="gap-2">
+        <Button onClick={() => { setEditingCourse(null); setIsFormOpen(true); }} className="gap-2 sm:self-auto self-start">
           <Plus size={18} />
           Create Course
         </Button>

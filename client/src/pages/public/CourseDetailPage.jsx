@@ -64,32 +64,37 @@ const CourseDetailPage = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 pb-20">
       {/* Top Meta Bar */}
-      <div className="border-b border-gray-100 dark:border-gray-800 py-4">
-        <div className="container-main flex items-center justify-between">
-          <Link to="/courses" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-brand-600 transition-colors">
+      <div className="border-b border-gray-100 dark:border-gray-800 py-3 sm:py-4 sticky top-16 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm z-20">
+        <div className="container-main flex items-center justify-between px-4 sm:px-6">
+          <Link to="/courses" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-brand-600 transition-colors">
             <ArrowLeft size={16} />
-            Back to courses
+            <span className="hidden sm:inline">Back to courses</span>
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button className="p-2 text-gray-400 hover:text-gray-600">
               <Share2 size={18} />
             </button>
             <button 
               onClick={handleBookmark}
-              className={cn("p-2 transition-colors", isBookmarked ? "text-brand-600" : "text-gray-400 hover:text-brand-600")}
+              className={cn(
+                "p-2 rounded-full transition-all", 
+                isBookmarked 
+                  ? "bg-brand-50 text-brand-600 dark:bg-brand-900/20" 
+                  : "text-gray-400 hover:text-brand-600"
+              )}
             >
-              <Bookmark size={18} fill={isBookmarked ? "currentColor" : "none"} />
+              <Bookmark size={20} fill={isBookmarked ? "currentColor" : "none"} />
             </button>
           </div>
         </div>
       </div>
 
-      <div className="container-main py-8 lg:py-12">
+      <div className="container-main py-4 sm:py-8 lg:py-12 px-0 sm:px-6">
         <div className="lg:grid lg:grid-cols-3 lg:gap-12">
           {/* Left: Main Content */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-6 sm:space-y-8">
             {/* Video Player */}
-            <div className="aspect-video w-full bg-black rounded-card overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800">
+            <div className="aspect-video w-full bg-black sm:rounded-card overflow-hidden shadow-2xl border-y sm:border border-gray-200 dark:border-gray-800">
               {youtubeId ? (
                 <iframe
                   src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`}
@@ -106,22 +111,24 @@ const CourseDetailPage = () => {
             </div>
 
             {/* Course Info */}
-            <div className="space-y-6">
-              <div className="flex flex-wrap items-center gap-3">
+            <div className="space-y-6 px-4 sm:px-0">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                 <Badge variant="brand">{course.category}</Badge>
-                <div className="flex items-center gap-1.5 text-sm text-gray-500">
-                  <Clock size={16} />
-                  <span>2h 30m total</span>
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-500 font-medium">
+                  <Clock size={14} />
+                  <span>2.5 Hours</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-sm text-gray-500">
-                  <Calendar size={16} />
-                  <span>Updated {new Date(course.updatedAt).toLocaleDateString()}</span>
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-500 font-medium">
+                  <Calendar size={14} />
+                  <span>{new Date(course.updatedAt).toLocaleDateString()}</span>
                 </div>
               </div>
 
-              <h1 className="heading-1 dark:text-white">{course.title}</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 dark:text-white leading-tight">
+                {course.title}
+              </h1>
 
-              <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-card border border-gray-100 dark:border-gray-800">
+              <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800">
                 <div className="w-12 h-12 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 font-bold">
                   {course.createdBy?.name?.charAt(0) || 'I'}
                 </div>
@@ -131,9 +138,9 @@ const CourseDetailPage = () => {
                 </div>
               </div>
 
-              <div className="prose prose-lg dark:prose-invert max-w-none">
-                <h3 className="heading-3 mb-4">About this course</h3>
-                <p className="body-lg text-gray-600 dark:text-gray-400 whitespace-pre-wrap leading-relaxed">
+              <div className="prose prose-sm sm:prose-lg dark:prose-invert max-w-none">
+                <h3 className="text-lg sm:text-xl font-bold mb-3">About this course</h3>
+                <p className="text-sm sm:text-lg text-gray-600 dark:text-gray-400 whitespace-pre-wrap leading-relaxed">
                   {course.description}
                 </p>
               </div>
@@ -141,8 +148,8 @@ const CourseDetailPage = () => {
           </div>
 
           {/* Right: Sidebar */}
-          <div className="mt-12 lg:mt-0 lg:col-span-1">
-            <div className="sticky top-24 space-y-8">
+          <div className="mt-8 lg:mt-0 lg:col-span-1 px-4 sm:px-0">
+            <div className="sticky top-24 space-y-8 pb-10 sm:pb-0">
               {/* Action Card */}
               <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-xl overflow-hidden">
                 <div className="h-2 bg-brand-600 w-full" />

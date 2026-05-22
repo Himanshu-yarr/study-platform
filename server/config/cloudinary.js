@@ -26,7 +26,7 @@ const pdfStorage = new CloudinaryStorage({
   params: {
     folder:           'study-platform-media/pdfs',
     allowed_formats:  ['pdf'],
-    resource_type:    'image',
+    resource_type:    'raw',
   },
 })
 

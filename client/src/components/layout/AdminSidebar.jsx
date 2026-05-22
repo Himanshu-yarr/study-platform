@@ -13,7 +13,7 @@ import { useAuth } from '../../context/AuthContext'
 import { Badge } from '../ui/Badge'
 import { cn } from '../../lib/cn'
 
-const AdminSidebar = () => {
+const AdminSidebar = ({ isOpen, onClose }) => {
   const location = useLocation()
   const { logout } = useAuth()
 
@@ -28,7 +28,10 @@ const AdminSidebar = () => {
   const isActive = (path) => location.pathname === path
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-sidebar-w bg-gray-900 text-white pt-6 flex flex-col z-[60]">
+    <aside className={cn(
+      "fixed top-0 h-screen w-sidebar-w bg-gray-900 text-white pt-6 flex flex-col z-[60] transition-all duration-300 lg:left-0",
+      isOpen ? "left-0" : "-left-full"
+    )}>
       {/* Logo */}
       <div className="px-6 mb-8 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
@@ -48,6 +51,7 @@ const AdminSidebar = () => {
           <Link
             key={item.name}
             to={item.path}
+            onClick={onClose}
             className={cn(
               'flex items-center gap-3 h-10 px-4 rounded-lg text-sm font-medium transition-all',
               isActive(item.path) 

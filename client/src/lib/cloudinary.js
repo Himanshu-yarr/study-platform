@@ -6,11 +6,12 @@
  */
 export const getDownloadUrl = (url) => {
   if (!url || !url.includes('cloudinary.com')) return url;
-  
-  const parts = url.split('/upload/');
+
+  // Determine the base path segment (image/upload or raw/upload)
+  const uploadSegment = url.includes('/raw/upload/') ? '/raw/upload/' : '/image/upload/';
+  const parts = url.split(uploadSegment);
   if (parts.length !== 2) return url;
-  
-  // Now that we've switched back to 'image' resource type in the backend,
-  // fl_attachment will work perfectly to force a PDF download.
-  return `${parts[0]}/upload/fl_attachment/${parts[1]}`;
+
+  // Use the same segment in the returned URL and add fl_attachment flag
+  return `${parts[0]}${uploadSegment}fl_attachment/${parts[1]}`;
 };

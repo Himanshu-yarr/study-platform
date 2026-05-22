@@ -37,13 +37,13 @@ const DashboardPage = () => {
         <div className="container-main">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="flex items-center gap-5">
-              <div className="w-16 h-16 rounded-full bg-brand-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-brand-500/20">
-                {user?.avatar ? (
-                  <img src={user.avatar} className="w-full h-full object-cover rounded-full" />
-                ) : (
-                  user?.name?.charAt(0)
-                )}
-              </div>
+              <div className="w-16 h-16 rounded-full bg-brand-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-brand-500/20 overflow-hidden flex-none">
+  {user?.avatar ? (
+    <img src={user.avatar} className="w-full h-full object-cover" />
+  ) : (
+    user?.name?.charAt(0)
+  )}
+</div>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <h1 className="heading-2 dark:text-white">Welcome back, {user?.name?.split(' ')[0]}!</h1>

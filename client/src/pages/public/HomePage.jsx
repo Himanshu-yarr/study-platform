@@ -127,6 +127,7 @@ const HomePage = () => {
           <CourseGrid 
             courses={featuredCourses} 
             isLoading={coursesLoading} 
+            variant="horizontal"
           />
 
           <div className="mt-12 text-center">
@@ -187,6 +188,7 @@ const HomePage = () => {
           <BookGrid 
             books={featuredBooks} 
             isLoading={booksLoading} 
+            variant="horizontal"
           />
 
           <div className="mt-12 text-center">

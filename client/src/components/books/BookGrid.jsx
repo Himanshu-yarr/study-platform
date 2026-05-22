@@ -1,13 +1,33 @@
 import BookCard from './BookCard'
 import BookCardSkeleton from './BookCardSkeleton'
 import { motion, AnimatePresence } from 'framer-motion'
+import { cn } from '../../lib/cn'
 
-const BookGrid = ({ books, isLoading, onBookmark, bookmarks = [] }) => {
+const BookGrid = ({ books, isLoading, onBookmark, bookmarks = [], variant = 'grid' }) => {
   if (isLoading) {
     return (
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-        {Array.from({ length: 8 }).map((_, i) => (
+      <div className={cn(
+        "grid gap-5",
+        variant === 'horizontal' ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" : "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
+      )}>
+        {Array.from({ length: 4 }).map((_, i) => (
           <BookCardSkeleton key={i} />
+        ))}
+      </div>
+    )
+  }
+
+  if (variant === 'horizontal') {
+    return (
+      <div className="flex overflow-x-auto pb-4 gap-5 snap-x no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 lg:grid-cols-4">
+        {books.map((book) => (
+          <div key={book._id} className="min-w-[160px] sm:min-w-0 snap-start">
+            <BookCard 
+              book={book} 
+              isBookmarked={bookmarks.includes(book._id)}
+              onBookmark={onBookmark}
+            />
+          </div>
         ))}
       </div>
     )

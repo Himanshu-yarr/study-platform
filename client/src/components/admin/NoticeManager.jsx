@@ -61,25 +61,25 @@ const NoticeManager = () => {
               key={notice._id}
               className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-5 rounded-2xl flex items-center justify-between group"
             >
-              <div className="flex items-center gap-4">
-                <div className={`p-2 rounded-xl ${
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <div className={`p-2 rounded-xl flex-shrink-0 ${
                   notice.type === 'urgent' ? 'bg-red-50 text-red-600' :
                   notice.type === 'warning' ? 'bg-amber-50 text-amber-600' : 'bg-brand-50 text-brand-600'
                 }`}>
                   <Megaphone size={20} />
                 </div>
                 <div>
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
                     <h4 className="font-bold">{notice.title}</h4>
                     <Badge variant={notice.isActive ? 'brand' : 'gray'} className="text-[10px]">
                       {notice.isActive ? 'Active' : 'Hidden'}
                     </Badge>
                   </div>
-                  <p className="text-sm text-gray-500 line-clamp-1">{notice.content}</p>
+                  <p className="text-sm text-gray-500 line-clamp-2">{notice.content}</p>
                 </div>
               </div>
               
-              <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="flex items-center gap-1 sm:gap-2 ml-4 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity flex-shrink-0">
                 <button 
                   onClick={() => setEditingNotice(notice)}
                   className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-gray-500 transition-colors"

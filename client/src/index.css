@@ -155,4 +155,23 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     @apply bg-gray-300 dark:bg-gray-700;
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@layer base {
+  :root {
+    --radius-btn: 9999px; /* App-like pill buttons */
+    --radius-card: 20px;   /* Softer, more modern corners */
+  }
 }
