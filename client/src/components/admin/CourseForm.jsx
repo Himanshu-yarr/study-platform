@@ -165,11 +165,11 @@ const CourseForm = ({ isOpen, onClose, onSubmit, initialData, isLoading }) => {
           </label>
         </div>
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-gray-800">
-          <Button variant="secondary" type="button" onClick={onClose} disabled={isLoading}>
+        <div className="flex flex-wrap justify-center sm:justify-end gap-3 pt-4 border-t border-gray-100 dark:border-gray-800">
+          <Button variant="secondary" type="button" onClick={onClose} disabled={isLoading} className="flex-1 sm:flex-none w-full sm:w-auto">
             Cancel
           </Button>
-          <Button type="submit" isLoading={isLoading} className="px-8">
+          <Button type="submit" isLoading={isLoading} className="flex-1 sm:flex-none w-full sm:w-auto px-8">
             {initialData ? 'Update Course' : 'Create Course'}
           </Button>
         </div>

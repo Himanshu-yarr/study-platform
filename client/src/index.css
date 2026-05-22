@@ -38,6 +38,16 @@
     @apply max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8;
   }
 
+  /* Hero container for mobile full-width */
+  .hero-container {
+    @apply w-full max-w-full mx-auto px-4;
+  }
+  @media (min-width: 640px) {
+    .hero-container {
+      @apply max-w-[1200px];
+    }
+  }
+
   .page-section {
     @apply py-16 md:py-20;
   }

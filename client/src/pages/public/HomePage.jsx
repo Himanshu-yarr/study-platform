@@ -33,7 +33,7 @@ const HomePage = () => {
           />
         </div>
 
-        <div className="container-main relative z-10 py-12 md:py-20 lg:py-0">
+        <div className="hero-container relative z-10 py-12 md:py-20 lg:py-0">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             {/* Left Col */}
             <div className="flex-1 text-center lg:text-left space-y-8">
@@ -50,14 +50,14 @@ const HomePage = () => {
                 Access expert-led video courses and comprehensive study materials designed specifically for Judiciary and LLB students. Learn at your own pace and achieve your legal career goals.
               </p>
               
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 flex-wrap">
                 <Link to="/courses">
-                  <Button size="lg" className="px-8 shadow-lg shadow-brand-500/20">
+                  <Button size="lg" className="w-full sm:w-auto px-8 shadow-lg shadow-brand-500/20">
                     Explore Courses
                   </Button>
                 </Link>
                 <Link to="/books">
-                  <Button variant="secondary" size="lg" className="px-8">
+                  <Button variant="secondary" size="lg" className="w-full sm:w-auto px-8">
                     Law Resources
                   </Button>
                 </Link>

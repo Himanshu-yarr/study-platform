@@ -88,11 +88,11 @@ const PlaylistForm = ({ isOpen, onClose, onSubmit, initialData, isLoading }) => 
           />
         </div>
 
-        <div className="flex gap-3 pt-4">
-          <Button type="button" variant="ghost" onClick={onClose} className="flex-1">
+        <div className="flex flex-wrap gap-3 pt-4 justify-center">
+          <Button type="button" variant="secondary" onClick={onClose} disabled={isLoading} className="flex-1 sm:flex-none w-full sm:w-auto">
             Cancel
           </Button>
-          <Button type="submit" variant="brand" className="flex-1" isLoading={isLoading}>
+          <Button type="submit" variant="brand" isLoading={isLoading} className="flex-1 sm:flex-none w-full sm:w-auto px-8">
             {initialData ? "Update Series" : "Add Series"}
           </Button>
         </div>
