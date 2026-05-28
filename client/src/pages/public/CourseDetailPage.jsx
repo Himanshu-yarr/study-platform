@@ -97,8 +97,9 @@ const CourseDetailPage = () => {
             <div className="aspect-video w-full bg-black sm:rounded-card overflow-hidden shadow-2xl border-y sm:border border-gray-200 dark:border-gray-800">
               {youtubeId ? (
                 <iframe
-                  src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`}
+                  src={`https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1`}
                   className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   title={course.title}
                 />

@@ -136,8 +136,10 @@ const CourseForm = ({ isOpen, onClose, onSubmit, initialData, isLoading }) => {
           {youtubeId && (
             <div className="relative aspect-video rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 bg-black">
               <iframe
-                src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`}
+                src={`https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1`}
                 className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
                 title="Preview"
               />
               <div className="absolute top-2 left-2 px-2 py-1 bg-green-600 text-white text-[10px] font-bold rounded uppercase flex items-center gap-1 shadow-lg">
