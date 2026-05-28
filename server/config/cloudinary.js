@@ -16,7 +16,7 @@ const imageStorage = new CloudinaryStorage({
   params: {
     folder:         'study-platform-media/images',
     allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
-    transformation: [{ width: 800, height: 450, crop: 'fill', quality: 'auto' }],
+    transformation: [{ width: 1200, height: 1200, crop: 'limit', quality: 'auto' }],
   },
 })
 
