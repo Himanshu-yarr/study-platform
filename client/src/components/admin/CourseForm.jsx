@@ -140,6 +140,7 @@ const CourseForm = ({ isOpen, onClose, onSubmit, initialData, isLoading }) => {
                 className="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
                 title="Preview"
               />
               <div className="absolute top-2 left-2 px-2 py-1 bg-green-600 text-white text-[10px] font-bold rounded uppercase flex items-center gap-1 shadow-lg">
