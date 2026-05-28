@@ -35,9 +35,9 @@ const ImageUploader = ({ value, onChange, className }) => {
     <div 
       onClick={() => !isPending && fileInputRef.current?.click()}
       className={cn(
-        'group relative w-full aspect-card-img rounded-card border-2 border-dashed transition-all cursor-pointer overflow-hidden flex flex-col items-center justify-center gap-2',
+        'group relative w-full aspect-video rounded-card border-2 border-dashed transition-all cursor-pointer overflow-hidden flex flex-col items-center justify-center gap-2',
         value?.url 
-          ? 'border-transparent' 
+          ? 'border-transparent bg-gray-50 dark:bg-gray-900/50' 
           : 'border-gray-300 dark:border-gray-700 hover:border-brand-500 bg-gray-50 dark:bg-gray-900/50',
         className
       )}
@@ -60,10 +60,11 @@ const ImageUploader = ({ value, onChange, className }) => {
           <img 
             src={value.url} 
             alt="Upload preview" 
-            className="w-full h-full object-cover" 
+            className="w-full h-full object-contain" 
           />
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
             <button
+              type="button"
               onClick={handleRemove}
               className="p-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors shadow-lg"
             >

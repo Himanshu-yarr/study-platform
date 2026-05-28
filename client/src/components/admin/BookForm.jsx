@@ -118,7 +118,7 @@ const BookForm = ({ isOpen, onClose, onSubmit, initialData, isLoading }) => {
             <ImageUploader 
               value={{ url: formData.coverUrl, publicId: formData.coverPublicId }}
               onChange={handleImageChange}
-              className="aspect-book h-full"
+              className="aspect-[2/3] h-full"
             />
           </div>
 
